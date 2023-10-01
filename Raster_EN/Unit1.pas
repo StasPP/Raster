@@ -386,7 +386,7 @@ var
   CmdLine: ShortString;
 begin 
   { Помещаем имя файла между кавычками, с соблюдением всех пробелов в именах Win9x } 
-  CmdLine := '"' + Filename + '" ' + Params; 
+  CmdLine := '"' + Filename + '" ' + Params;
   FillChar(StartInfo, SizeOf(StartInfo), #0); 
 
   with StartInfo do
@@ -860,7 +860,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 var I:Integer;
 begin
   GeoInit('Data\Sources.loc','','Loading Coordinate Systems Error!');
-  DoubleBuffered:=True;  
+  GeoTranslate('Russian', 'English', 'Data\Editor\');
+  
+  DoubleBuffered:=True;
 
  for I := 0 to ComponentCount-1 do
     if Components[I] is TPanel  then
@@ -1069,8 +1071,11 @@ end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Image.Destroy;
-  Buff1.Destroy;
+  if Image <> nil then
+    Image.Destroy;
+
+  if Buff1 <> nil then
+    Buff1.Destroy;
 end;
 
 procedure TForm1.TrackBar1Change(Sender: TObject);
@@ -1307,7 +1312,7 @@ begin
     
  if fileexists(AName) then
  Begin
-   if MessageDlg('Перезаписать существующий файл? '+#13+AName, MtConfirmation, [mbYes, mbNo],0) <> 6 then
+   if MessageDlg('Rewrite existing file? '+#13+AName, MtConfirmation, [mbYes, mbNo],0) <> 6 then
      exit;
  End;
 
@@ -1504,7 +1509,7 @@ begin
  PB.Visible := false;
  PB.Position := 0;
 
- ShowMessage('Файл ASDB сохранен успешно!');
+ ShowMessage('File ASDB successfully saved!');
 end;
 
 
@@ -1606,12 +1611,12 @@ end;
 procedure TForm1.FormActivate(Sender: TObject);
 begin
   Projections.OnChange(nil);
-  StringGrid1.Cells[0,0] := 'Имя';
-  StringGrid1.Cells[1,0] := 'X на изображении';
-  StringGrid1.Cells[2,0] := 'Y на изображении';
-  StringGrid2.Cells[0,0] := 'Имя';
-  StringGrid2.Cells[1,0] := 'X на изображении';
-  StringGrid2.Cells[2,0] := 'Y на изображении';
+  StringGrid1.Cells[0,0] := 'Name';
+  StringGrid1.Cells[1,0] := 'X on Image';
+  StringGrid1.Cells[2,0] := 'Y on Image';
+  StringGrid2.Cells[0,0] := 'Name';
+  StringGrid2.Cells[1,0] := 'X on Image';
+  StringGrid2.Cells[2,0] := 'Y on Image';
 
   RefreshBtn.OnClick(nil);
 end;

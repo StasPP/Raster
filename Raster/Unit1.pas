@@ -1263,10 +1263,11 @@ end;
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if StringGrid1.RowCount > 1 then
-  
+  begin
 
-  Image.Destroy;
-  Buff1.Destroy;
+    Image.Destroy;
+    Buff1.Destroy;
+  end;
 end;
 
 procedure TForm1.TrackBar1Change(Sender: TObject);

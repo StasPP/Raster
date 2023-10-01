@@ -284,7 +284,7 @@ object Form2: TForm2
       Top = 8
       Width = 121
       Height = 25
-      Caption = #1054#1090#1084#1077#1085#1072
+      Caption = 'Cancel'
       TabOrder = 0
       OnClick = Button2Click
     end
@@ -293,7 +293,7 @@ object Form2: TForm2
       Top = 8
       Width = 161
       Height = 25
-      Caption = #1054#1050
+      Caption = 'OK'
       TabOrder = 1
       OnClick = Button1Click
     end
