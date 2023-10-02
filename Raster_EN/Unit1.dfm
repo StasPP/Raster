@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 308
   Top = 163
   Caption = 'Raster GeoReference v. 0.6'
-  ClientHeight = 676
+  ClientHeight = 696
   ClientWidth = 1016
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -25,12 +25,13 @@ object Form1: TForm1
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 498
+    Top = 518
     Width = 1016
     Height = 178
     Align = alBottom
     TabOrder = 0
     Visible = False
+    ExplicitTop = 498
     object StringGrid1: TStringGrid
       Left = 1
       Top = 65
@@ -212,18 +213,19 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 799
-    Height = 320
+    Height = 340
     HorzScrollBar.Visible = False
     VertScrollBar.Visible = False
     Align = alClient
     Color = clBtnFace
     ParentColor = False
     TabOrder = 1
+    ExplicitHeight = 320
     object Image1: TImage
       Left = 0
       Top = 49
       Width = 778
-      Height = 233
+      Height = 253
       Cursor = crArrow
       Align = alClient
       OnMouseDown = Image1MouseDown
@@ -252,7 +254,7 @@ object Form1: TForm1
     end
     object ScrollBar1: TScrollBar
       Left = 0
-      Top = 282
+      Top = 302
       Width = 795
       Height = 17
       Align = alBottom
@@ -260,18 +262,20 @@ object Form1: TForm1
       TabOrder = 0
       OnChange = ScrollBar1Change
       OnScroll = ScrollBar1Scroll
+      ExplicitTop = 282
     end
     object ScrollBar2: TScrollBar
       Left = 778
       Top = 49
       Width = 17
-      Height = 233
+      Height = 253
       Align = alRight
       Kind = sbVertical
       PageSize = 0
       TabOrder = 1
       OnChange = ScrollBar2Change
       OnScroll = ScrollBar2Scroll
+      ExplicitHeight = 233
     end
     object Panel2: TPanel
       Left = 0
@@ -490,22 +494,24 @@ object Form1: TForm1
     end
     object PB: TProgressBar
       Left = 0
-      Top = 299
+      Top = 319
       Width = 795
       Height = 17
       Align = alBottom
       TabOrder = 3
       Visible = False
+      ExplicitTop = 299
     end
   end
   object Panel3: TPanel
     Left = 799
     Top = 0
     Width = 217
-    Height = 320
+    Height = 340
     Align = alRight
     TabOrder = 2
     Visible = False
+    ExplicitHeight = 320
     object Shape1: TShape
       Left = 8
       Top = 32
@@ -1662,13 +1668,14 @@ object Form1: TForm1
   end
   object Panel7: TPanel
     Left = 0
-    Top = 320
+    Top = 340
     Width = 1016
     Height = 178
     Align = alBottom
     Caption = 'Panel7'
     TabOrder = 3
     Visible = False
+    ExplicitTop = 320
     object StringGrid2: TStringGrid
       Left = 1
       Top = 25
@@ -1846,7 +1853,7 @@ object Form1: TForm1
     Left = 968
     Top = 536
     Bitmap = {
-      494C010106000900580018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900600018001800FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -1822,7 +1822,7 @@ begin
      Form2.XX.Text := (StringGrid1.Cells[3,StringGrid1.Row]);
      Form2.YY.Text := (StringGrid1.Cells[4,StringGrid1.Row]); 
 
-     Form2.N := trunc(StrToFloat2((StringGrid1.Cells[0,StringGrid1.Row])));
+     Form2.N := trunc(StrToFloat2( GetCols(StringGrid1.Cells[0,StringGrid1.Row],' ',1,1) ));
 
      try
         Image2.Picture.Bitmap.Canvas.Brush.Color := clBtnShadow;
@@ -2860,7 +2860,10 @@ begin
        //
       if (I=K)or(J=K) then
          continue;
-         
+
+      if sqrt ( sqr(MapY[j]-MapY[i]) + sqr(MapX[j]-MapX[i]) ) = 0 then
+         continue;
+
       SF[CoefCount] := ( sqrt ( sqr(ImgX[j]-ImgX[i]) + sqr(ImgY[j]-ImgY[i]) )
                 / sqrt ( sqr(MapY[j]-MapY[i]) + sqr(MapX[j]-MapX[i]) ));
 
@@ -3051,10 +3054,50 @@ begin
   Form3.Memo1.Lines.Add('');
   Form3.Memo1.Lines.Add('Vector analyse: ');
   Form3.Memo1.Lines.Add('');
-  For I := 0 To  PointCount -2 Do
+//  For I := 0 To  PointCount -2 Do
+//    For J := I+1 To  PointCount -1 Do
+//    Begin
+//       //
+//
+//      SF[CoefCount] := ( sqrt ( sqr(ImgX[j]-ImgX[i]) + sqr(ImgY[j]-ImgY[i]) )
+//                / sqrt ( sqr(MapY[j]-MapY[i]) + sqr(MapX[j]-MapX[i]) ));
+//
+//      beta[CoefCount] := -(arctan3((ImgY[j]-ImgY[i]),(ImgX[j]-ImgX[i])) - arctan3((MapY[j]-MapY[i]),(MapX[j]-MapX[i])));
+//
+//
+//      if beta[CoefCount] < -pi then
+//         beta[CoefCount] := beta[CoefCount] + 2*pi;
+//      if beta[CoefCount] > pi then
+//         beta[CoefCount] := beta[CoefCount] - 2*pi;
+//
+//
+//      a[CoefCount] := 1/SF[CoefCount]*Cos(beta[CoefCount]);
+//      b[CoefCount] := 1/SF[CoefCount]*Sin(beta[CoefCount]);
+//
+//      C[CoefCount] := MapX[i] - (a[CoefCount]*ImgX[i] - b[CoefCount]*ImgY[i]);
+//      D[CoefCount] := MapY[i] - (a[CoefCount]*ImgY[i] + b[CoefCount]*ImgX[i]);
+//
+//
+//      Form3.Memo1.Lines.Add(StringGrid1.Cells[0,I+1] + ' - ' + StringGrid1.Cells[0,J+1]);
+//      Form3.Memo1.Lines.Add('  Scale: ' + format('%.4f',[SF[CoefCount]]));
+//
+//      Form3.Memo1.Lines.Add('  Angles: a1: '
+//                            + format('%.4f', [(arctan3((ImgY[j]-ImgY[i]),(ImgX[j]-ImgX[i])))*180/pi])
+//                            +'  a2: '+
+//                            format('%.4f',[(arctan3((MapY[j]-MapY[i]),(MapX[j]-MapX[i])))*180/pi])
+//                            +'   Difference: '+
+//                            format('%.4f',[(beta[CoefCount]*180/pi)]));
+//
+//      Form3.Memo1.Lines.Add('  Shifts: X: ' + format('%n',[C[CoefCount]]) + '  Y: ' + format('%n',[-D[CoefCount]]));
+//
+//      inc(CoefCount);
+//    End;
+
+ For I := 0 To  PointCount -2 Do
     For J := I+1 To  PointCount -1 Do
     Begin
-       //
+       if sqrt ( sqr(MapY[j]-MapY[i]) + sqr(MapX[j]-MapX[i])) = 0 then
+        continue;
 
       SF[CoefCount] := ( sqrt ( sqr(ImgX[j]-ImgX[i]) + sqr(ImgY[j]-ImgY[i]) )
                 / sqrt ( sqr(MapY[j]-MapY[i]) + sqr(MapX[j]-MapX[i]) ));
@@ -3082,14 +3125,13 @@ begin
                             + format('%.4f', [(arctan3((ImgY[j]-ImgY[i]),(ImgX[j]-ImgX[i])))*180/pi])
                             +'  a2: '+
                             format('%.4f',[(arctan3((MapY[j]-MapY[i]),(MapX[j]-MapX[i])))*180/pi])
-                            +'   Difference: '+
+                            +'   Разность: '+
                             format('%.4f',[(beta[CoefCount]*180/pi)]));
 
-      Form3.Memo1.Lines.Add('  Shifts: X: ' + format('%n',[C[CoefCount]]) + '  Y: ' + format('%n',[-D[CoefCount]]));
+      Form3.Memo1.Lines.Add('  Shift: X: ' + format('%n',[C[CoefCount]]) + '  Y: ' + format('%n',[-D[CoefCount]]));
 
       inc(CoefCount);
     End;
-
 
   //// Этап 2b. Cчитаю средние параметры
 
